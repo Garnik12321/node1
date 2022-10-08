@@ -125,25 +125,49 @@ async delComment (req, res){
 }
 
 
-    
-    
+async addCommentsFriends (req, res){
+    try{
+        const user_id = req.body.user_id;
+        const friend_id = req.body.friend_id;
+        const sql = "INSERT INTO friends(user_id, friend_id) VALUES (?, ?)"
+        db.query(sql, [user_id, friend_id], function (err, results) {
+            if (err) console.log(err);
+            else console.log("Data updated");
+        })
+    } catch(e){
+        console.log(e)
+    }
+}
 
 
-
-
-
-
-
-
-
-    
-
+async getFriends (req, res){
+    try {
+        const user_id = req.params["id"];
+        db.query("SELECT * FROM friends WHERE user_id = (?)", [user_id],function(err,results){
+            if(err) console.log(err)
+            else{
+            res.send(results)
+        }
+        })
+    } catch(e){
+        console.log(e)
+    }
     
 }
 
 
-
-
-
+async delFriends (req, res){
+    try {
+        const user_id = req.params["id"];
+        const sql = "DELETE FROM comments WHERE user_id = (?)"
+        db.query(sql, [user_id], function (err, results) {
+            if (err) console.log(err);
+            else console.log("Comment deleted");
+        })
+    }catch(e){
+        
+    }
+}
+}
 
 module.exports = new apiController()

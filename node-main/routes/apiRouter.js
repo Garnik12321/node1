@@ -8,7 +8,10 @@ router.get('/posts', apiController.getPosts)
 router.post('/posts', apiController.addPosts)
 router.post('/comments', apiController.addCommentsByPost)
 router.get('/comments/:post_id', apiController.getCommentsByPost)
-router.put('/comments/:post_id', apiController.changeCommentsByPost)
+router.delete('/comments/:post_id', apiController.changeCommentsByPost)
 router.post('/comments/:id', apiController.delComment)
+router.post('/friends', apiController.getFriends)
+router.get('/friends/:id', apiController.getFriends)
+router.delete('/friends/:id', apiController.delFriends)
 
 module.exports = router
